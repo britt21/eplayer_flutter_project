@@ -2,9 +2,12 @@ import 'package:eplayer_flutter_mobile/colors/color.dart';
 import 'package:eplayer_flutter_mobile/drawables/pngs.dart';
 import 'package:eplayer_flutter_mobile/drawables/svgs.dart';
 import 'package:eplayer_flutter_mobile/font/font.dart';
+import 'package:eplayer_flutter_mobile/view/signup/Select_country.dart';
 import 'package:eplayer_flutter_mobile/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -65,9 +68,7 @@ class _OnBoardHomeState extends State<OnBoardHome> {
                               child: AppButton(
                                   lit_purple, app_purple_deep, "Join Eplayer", lit_purple, null,
                                   () {
-                                pageController.nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.slowMiddle);
+                                    Get.to(SelectCountry());
 
                               }),
                             ),

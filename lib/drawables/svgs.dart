@@ -6,3 +6,4 @@ const bodycrvone = "assets/image/svg/bodycurveone.svg";
 const eplaylogo = "assets/image/svg/eplaylogo.svg";
 const elogo = "assets/image/svg/elogo.svg";
 const etback = "assets/image/svg/back.svg";
+const dback = "assets/image/svg/dback.svg";
