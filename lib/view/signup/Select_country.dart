@@ -19,13 +19,11 @@ class _SelectCountryState extends State<SelectCountry> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EplayerAppBar("Select Country"),
-      body: Center(
-        child: DropdownButtonFormField2(items: list.map((eachitem) =>
-        DropdownMenuItem(child: Text(eachitem))).toList(),
+      appBar: EplayerAppBar("Signup"),
+      body: SingleChildScrollView(child: Column(children: [
 
-        )
-      ),
+
+      ],),)
     );
   }
 }
