@@ -40,6 +40,8 @@ dependencies:
   google_fonts:
   smooth_page_indicator:
   get:
+  firebase_core:
+  firebase_messaging:
   dropdown_button2:
 
 

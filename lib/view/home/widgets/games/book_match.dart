@@ -15,11 +15,16 @@ class _BookMatchState extends State<BookMatch> {
     return Scaffold(
       appBar: EplayerAppBar("Match Settings"),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(15.0),
         child: ListView(
           children: [
             Text("Enter amount"),
-            AppTextView()
+            AppTextView("Enter amount"),
+            SizedBox(height: 20,),
+            Container(
+                child: AppButtonPurple("Proceed",(){}))
+
+
           ],
         ),
       ),

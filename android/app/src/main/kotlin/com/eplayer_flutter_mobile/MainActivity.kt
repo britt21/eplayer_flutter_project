@@ -1,4 +1,4 @@
-package com.example.eplayer_flutter_mobile
+package com.eplayer_flutter_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

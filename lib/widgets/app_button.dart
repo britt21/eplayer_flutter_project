@@ -15,6 +15,7 @@ class AppButton extends StatelessWidget {
   AppButton(this.borderColor, this.backGroundColor, this.text, this.textColor,
       this.icon, this.touch);
 
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -45,6 +46,48 @@ class AppButton extends StatelessWidget {
     );
   }
 }
+
+
+
+class AppButtonPurple extends StatelessWidget {
+  final text;
+  final VoidCallback touch;
+
+AppButtonPurple(this.text,
+      this.touch);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 55,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 00, right: 00),
+        child: InkWell(
+          onTap: touch,
+          child: Container(
+            decoration: BoxDecoration(
+              color: app_purple,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(width: 3, color: lit_purple),
+            ),
+            child: Center(
+              child: Text(
+                text,
+                style: GoogleFonts.mulish(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class GameButton extends StatelessWidget {
   final borderColor;
   final backGroundColor;
@@ -52,7 +95,8 @@ class GameButton extends StatelessWidget {
   final textColor;
   final VoidCallback touch;
 
-  GameButton(this.borderColor, this.backGroundColor, this.text, this.textColor, this.touch);
+  GameButton(this.borderColor, this.backGroundColor, this.text, this.textColor,
+      this.touch);
 
   @override
   Widget build(BuildContext context) {
@@ -128,12 +172,10 @@ class AppButtonFit extends StatelessWidget {
 }
 
 class AppEditText extends StatefulWidget {
+  final etcontroller;
+  final ethint;
 
-   final  etcontroller;
-   final  ethint;
-
-   AppEditText({this.etcontroller, this.ethint});
-
+  AppEditText({this.etcontroller, this.ethint});
 
   @override
   State<AppEditText> createState() => _AppEditTextState();
@@ -163,9 +205,6 @@ class _AppEditTextState extends State<AppEditText> {
   }
 }
 
-
-
-
 class EtPass extends StatelessWidget {
   final TextEditingController etcontroller;
 
@@ -187,10 +226,13 @@ class EtPass extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: TextField(
-            style: GoogleFonts.mulish(color: Colors.black,fontWeight: FontWeight.bold),
+            style: GoogleFonts.mulish(
+                color: Colors.black, fontWeight: FontWeight.bold),
             controller: etcontroller,
             obscureText: true, // This makes it a password input field
-            decoration: InputDecoration(suffixStyle: GoogleFonts.mulish(color: Colors.black,fontWeight: FontWeight.bold),
+            decoration: InputDecoration(
+              suffixStyle: GoogleFonts.mulish(
+                  color: Colors.black, fontWeight: FontWeight.bold),
               hintText: "Password",
             ),
           ),
@@ -199,9 +241,11 @@ class EtPass extends StatelessWidget {
     );
   }
 }
-class AppTextView extends StatelessWidget {
 
-  AppTextView();
+class AppTextView extends StatelessWidget {
+  final edittexthint;
+
+  AppTextView(this.edittexthint);
 
   @override
   Widget build(BuildContext context) {
@@ -219,10 +263,13 @@ class AppTextView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: TextField(
-            style: GoogleFonts.mulish(color: Colors.black,fontWeight: FontWeight.bold),
+            style: GoogleFonts.mulish(
+                color: Colors.black, fontWeight: FontWeight.bold),
             obscureText: true, // This makes it a password input field
-            decoration: InputDecoration(suffixStyle: GoogleFonts.mulish(color: Colors.black,fontWeight: FontWeight.bold),
-              hintText: "Password",
+            decoration: InputDecoration(
+              suffixStyle: GoogleFonts.mulish(
+                  color: Colors.black, fontWeight: FontWeight.bold),
+              hintText: "${edittexthint}",
             ),
           ),
         ),

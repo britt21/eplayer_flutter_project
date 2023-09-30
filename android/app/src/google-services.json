@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "589617306031",
+    "project_id": "eplayermobile",
+    "storage_bucket": "eplayermobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589617306031:android:74c9a1b6a3cd93cbe5375a",
+        "android_client_info": {
+          "package_name": "com.eplayer_flutter_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR7e1dzjEi61mGILvdy2Lom6Bhck4S4tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
