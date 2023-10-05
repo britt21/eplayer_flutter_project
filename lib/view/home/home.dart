@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
                 SvgPicture.asset(payout),
                 Text("Payout")],),
               Column(children: [
-                SvgPicture.asset(giftbg),
+                SvgPicture.asset(etgift),
 
                 Text("Gift")],),
               Column(children: [

@@ -11,3 +11,4 @@ const addfundic = "assets/image/svg/addfund_ic.svg";
 const walletbg = "assets/image/svg/walletbg.svg";
 const giftbg = "assets/image/svg/giftbg.svg";
 const payout = "assets/image/svg/payoutbg.svg";
+const etgift = "assets/image/svg/dgift.svg";
