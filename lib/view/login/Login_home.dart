@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../colors/color.dart';
+import '../home/home.dart';
 
 class LoginHome extends StatefulWidget {
   const LoginHome({super.key});
@@ -59,7 +60,7 @@ class _LoginHomeState extends State<LoginHome> {
         AppButton(
             lit_purple, app_purple, "Login", Colors.white, null,
                 () {
-              Get.to(DashBoardHome());
+              Get.to(Home());
 
             }),
 

@@ -8,6 +8,36 @@ import 'package:google_fonts/google_fonts.dart';
 import '../colors/color.dart';
 
 
+class EplayerHomeAppBar extends StatelessWidget implements PreferredSizeWidget{
+
+  final title;
+
+  EplayerHomeAppBar(this.title);
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return AppBar(
+    backgroundColor: Colors.white,
+    elevation: 1,centerTitle: true,
+    leading: Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: Container(
+        width: 24,
+        height: 24,
+        child: SvgPicture.asset(etback),
+      ),
+    ),
+    title: Text("${title}",style: GoogleFonts.mulish(color: app_purple,fontWeight: FontWeight.bold,fontSize: 20),),
+      );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+
+}
 class EplayerAppBar extends StatelessWidget implements PreferredSizeWidget{
 
   final title;
