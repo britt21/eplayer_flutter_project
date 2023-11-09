@@ -67,7 +67,7 @@ class _SignUpHomeState extends State<SignUpHome> {
           ),
           SizedBox(height: 20,),
           AppButton(
-              lit_purple, app_purple, "Signup", Colors.white, null,
+                "Signup",
                   () {
 
 

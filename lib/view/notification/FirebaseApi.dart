@@ -1,9 +1,15 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../login/Login_home.dart';
 
 Future<void> handleMessage(RemoteMessage message) async {
   print("Title: ${message.notification?.title}");
   print("body: ${message.notification?.body}");
   print("Payload: ${message.data}");
+
+
 }
 class FirebaseApi{
 
@@ -16,6 +22,8 @@ class FirebaseApi{
     print("Token: ${fcmtoken}");
     
     FirebaseMessaging.onBackgroundMessage(handleMessage);
+
+    FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
 
   }
 

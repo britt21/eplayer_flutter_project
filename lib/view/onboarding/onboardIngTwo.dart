@@ -55,7 +55,7 @@ class OnboardingPageOne extends StatelessWidget {
                 SvgPicture.asset(bodycrvone),
               ],
             ),
-            Padding(
+            Padding( 
               padding: const EdgeInsets.only(top: 1.0),
               child: Image.asset(maprig),
             ),

@@ -5,14 +5,49 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppButton extends StatelessWidget {
-  final borderColor;
-  final backGroundColor;
+  final text;
+  final VoidCallback touch;
+
+  AppButton( this.text, this.touch);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 55,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: InkWell(
+          onTap: touch,
+          child: Container(
+            decoration: BoxDecoration(
+              color: app_purple,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(width: 3, color: lit_purple),
+            ),
+            child: Center(
+              child: Text(
+                text,
+                style: GoogleFonts.mulish(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+class AppButtonLit extends StatelessWidget {
   final text;
   final textColor;
   final icon;
   final VoidCallback touch;
 
-  AppButton(this.borderColor, this.backGroundColor, this.text, this.textColor,
+  AppButtonLit( this.text, this.textColor,
       this.icon, this.touch);
 
 
@@ -26,7 +61,7 @@ class AppButton extends StatelessWidget {
           onTap: touch,
           child: Container(
             decoration: BoxDecoration(
-              color: backGroundColor,
+              color: btn_color,
               borderRadius: BorderRadius.circular(15),
               border: Border.all(width: 3, color: lit_purple),
             ),
@@ -35,6 +70,43 @@ class AppButton extends StatelessWidget {
                 text,
                 style: GoogleFonts.mulish(
                   color: textColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+class AppButtonDeep extends StatelessWidget {
+  final text;
+  final VoidCallback touch;
+
+  AppButtonDeep( this.text, this.touch);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 55,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: InkWell(
+          onTap: touch,
+          child: Container(
+            decoration: BoxDecoration(
+              color: app_purple_deep,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(width: 3, color: lit_purple),
+            ),
+            child: Center(
+              child: Text(
+                text,
+                style: GoogleFonts.mulish(
+                  color: lit_purple,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -201,6 +273,55 @@ class _AppEditTextState extends State<AppEditText> {
               ),
             ),
           )),
+    );
+  }
+}
+
+class EplayerEditText extends StatefulWidget {
+  final etcontroller;
+  final ethint;
+  final toptitle;
+
+  EplayerEditText({this.etcontroller, this.ethint, this.toptitle});
+
+  @override
+  State<EplayerEditText> createState() => _EplayerEditTextState();
+}
+
+class _EplayerEditTextState extends State<EplayerEditText> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Column(
+        children: [
+
+          Row(
+            children: [
+              Text("${widget.toptitle}",style: GoogleFonts.mulish(
+                color: app_purple_deep,
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+              ),),
+            ],
+          ),
+          Container(
+              decoration: BoxDecoration(
+                  color: etbg,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(6), topLeft: Radius.circular(6))),
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: TextField(
+                  controller: widget.etcontroller,
+                  decoration: InputDecoration(
+                    hintText: widget.ethint,
+                  ),
+                ),
+              )),
+        ],
+      ),
     );
   }
 }

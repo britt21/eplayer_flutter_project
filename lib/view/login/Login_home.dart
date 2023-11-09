@@ -58,7 +58,7 @@ class _LoginHomeState extends State<LoginHome> {
         ),
         SizedBox(height: 20,),
         AppButton(
-            lit_purple, app_purple, "Login", Colors.white, null,
+              "Login",
                 () {
               Get.to(Home());
 

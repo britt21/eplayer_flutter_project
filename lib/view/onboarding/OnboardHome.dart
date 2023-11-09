@@ -18,7 +18,7 @@ import 'onboardIngTwo.dart';
 class OnBoardHome extends StatefulWidget {
   @override
   State<OnBoardHome> createState() => _OnBoardHomeState();
-}
+} 
 
 class _OnBoardHomeState extends State<OnBoardHome> {
   bool isLastPage = false;
@@ -67,8 +67,8 @@ class _OnBoardHomeState extends State<OnBoardHome> {
                         Expanded(
                           child: Padding(
                               padding: const EdgeInsets.only(bottom: 45.0),
-                              child: AppButton(
-                                  lit_purple, app_purple_deep, "Join Eplayer", lit_purple, null,
+                              child: AppButtonDeep(
+                                    "Join Eplayer",
                                   () {
                                     Get.to(SignUpHome());
 
@@ -78,8 +78,8 @@ class _OnBoardHomeState extends State<OnBoardHome> {
                            Expanded(
                              child: Padding(
                               padding:  EdgeInsets.only(bottom: 45.0),
-                              child: AppButton(
-                                  lit_purple, btn_color, "Login", app_purple_deep, null,
+                              child: AppButtonLit(
+                                    "Login", app_purple_deep, null,
                                   () {
                                     Get.to(LoginHome());
 
@@ -94,8 +94,8 @@ class _OnBoardHomeState extends State<OnBoardHome> {
 
                     : Padding(
                         padding: const EdgeInsets.only(bottom: 45.0),
-                        child: AppButton(
-                            lit_purple, btn_color, "Continue", app_purple, null,
+                        child: AppButtonLit(
+                              "Continue", app_purple, null,
                             () {
                           pageController.nextPage(
                               duration: Duration(milliseconds: 500),
