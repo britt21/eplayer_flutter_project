@@ -22,8 +22,8 @@ class BookHome extends StatelessWidget {
             children: [
               EplayerEditText(toptitle: "Bidding Amount",ethint: "Enter amount",),
               SizedBox(height: 15,),
-              AppButton("Create Match", () {
-                Get.to(FindMatch());
+              AppButton("Find Match", () {
+                Get.to(() => FindMatch());
 
               })
 

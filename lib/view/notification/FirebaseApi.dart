@@ -6,26 +6,21 @@ import '../login/Login_home.dart';
 
 Future<void> handleMessage(RemoteMessage message) async {
   print("Title: ${message.notification?.title}");
-  print("body: ${message.notification?.body}");
+  print("Body: ${message.notification?.body}");
   print("Payload: ${message.data}");
-
-
 }
-class FirebaseApi{
 
+class FirebaseApi {
+  final _firebaseMessaging = FirebaseMessaging.instance;
 
-  final _firebaseMessaging= FirebaseMessaging.instance;
-  Future<void> initNotify() async{
+  Future<void> initNotify() async {
     await FirebaseMessaging.instance.subscribeToTopic("foo-bar");
     await _firebaseMessaging.requestPermission();
     final fcmtoken = await _firebaseMessaging.getToken();
     print("Token: ${fcmtoken}");
-    
-    FirebaseMessaging.onBackgroundMessage(handleMessage);
 
-    FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
-
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      handleMessage(message);
+    });
   }
-
-
 }

@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../colors/color.dart';
+import '../drawables/fonts.dart';
 
 
 class EplayerHomeAppnoback extends StatelessWidget implements PreferredSizeWidget{
@@ -26,10 +27,9 @@ class EplayerHomeAppnoback extends StatelessWidget implements PreferredSizeWidge
       child: Container(
         width: 24,
         height: 24,
-        child: SvgPicture.asset(etback),
       ),
     ),
-    title: Text("${title}",style: GoogleFonts.mulish(color: app_purple,fontWeight: FontWeight.w900,fontSize: 20),),
+    title: Text("${title}",style: bigfont),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 18.0),

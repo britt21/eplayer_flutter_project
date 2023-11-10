@@ -1,5 +1,7 @@
 import 'package:eplayer_flutter_mobile/widgets/Utils.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../drawables/fonts.dart';
 import '../../drawables/pngs.dart';
 
 class FindMatch extends StatefulWidget {
@@ -38,25 +40,32 @@ class _FindMatchState extends State<FindMatch>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EplayerHomeAppnoback("Finding a match"),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnimatedContainer(
-                duration: const Duration(seconds: 1),
-                curve: Curves.easeInOut,
-                width: _isExpanded ? 200.0 : 100.0,
-                // Adjust width based on state
-                height: _isExpanded ? 200.0 : 100.0,
-                // Adjust height based on state
-                child: Image.asset(matchbg),
+      appBar: EplayerHomeAppnoback(""),
+      body: Column(
+
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Finding you a match",style: bigfontbig),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(seconds: 3),
+                    curve: Curves.easeInOut,
+                    width: _isExpanded ? 200.0 : 100.0,
+                    // Adjust width based on state
+                    height: _isExpanded ? 200.0 : 100.0,
+                    // Adjust height based on state
+                    child: Image.asset(matchbg),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

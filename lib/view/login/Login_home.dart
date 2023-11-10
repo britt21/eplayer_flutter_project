@@ -60,7 +60,7 @@ class _LoginHomeState extends State<LoginHome> {
         AppButton(
               "Login",
                 () {
-              Get.to(Home());
+              Get.to(() => Home());
 
             }),
 
