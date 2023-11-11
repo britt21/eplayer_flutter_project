@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../colors/color.dart';
-import '../drawables/fonts.dart';
+import '../font/fonts.dart';
 
 
 class EplayerHomeAppnoback extends StatelessWidget implements PreferredSizeWidget{
