@@ -25,18 +25,9 @@ Future gamebotomsheet(BuildContext context, bool dissmiss,name,amount,VoidCallba
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: Container(
-                width: 75, // Set the desired width
-                height: 75, // Set the desired height
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: app_purple,
-                    width: 3.0, // Adjust the width of the border as needed
-                  ),
-                ),
                 child: Center(
                   child: Text(
-                    "30",
+                    "Call of duty mobile",
                     style: GoogleFonts.mulish(
                       color: Colors.black,
                       fontSize: 25,
@@ -46,6 +37,7 @@ Future gamebotomsheet(BuildContext context, bool dissmiss,name,amount,VoidCallba
                 ),
               ),
             ),
+            Divider(thickness: 0.5,color: lit_purple,),
 
             Padding(
               padding: const EdgeInsets.only(left: 40.0,right: 40),
@@ -83,6 +75,8 @@ Future gamebotomsheet(BuildContext context, bool dissmiss,name,amount,VoidCallba
                 ),
 
               ],),
+
+            Divider(thickness: 0.5,color: lit_purple),
 
             Expanded(
               child: Row(

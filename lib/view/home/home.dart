@@ -1,6 +1,7 @@
 import 'package:eplayer_flutter_mobile/colors/color.dart';
 import 'package:eplayer_flutter_mobile/drawables/svgs.dart';
 import 'package:eplayer_flutter_mobile/widgets/Utils.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../book_match/book_home.dart';
+import '../widget/bottom_sheet.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,6 +19,31 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print("GETTINGMESSAGEBODY ; ${message.notification?.body}");
+      print("GETTINGMESSAGETITLE ; ${message.notification?.title}");
+      print("GETTINGMESSAGETITLE ; ${message.data}");
+
+      bool hasShown = false;
+
+
+          // gamebotomsheet(context, false, message.data["name"],
+          //     "\$${message.data["amount"]}", () {hasShown = false;}).then((value) => hasShown = true);
+
+          hasShown = true;
+
+        print("ggg: ${hasShown}");
+
+
+
+    });
+
+  }
   int _selectedIndex = 0;
 
   List<IconData> _randomIcons = [

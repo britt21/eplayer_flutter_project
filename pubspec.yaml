@@ -44,6 +44,7 @@ dependencies:
   firebase_messaging:
   dropdown_button2:
   dash_bubble: ^2.0.0
+  firebase_auth:
 
 
 

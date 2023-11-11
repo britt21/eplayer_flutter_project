@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:eplayer_flutter_mobile/colors/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppButton extends StatelessWidget {
@@ -318,6 +319,58 @@ class _EplayerEditTextState extends State<EplayerEditText> {
                   decoration: InputDecoration(
                     hintText: widget.ethint,
                   ),
+                ),
+              )),
+        ],
+      ),
+    );
+  }
+}
+
+class EplayerEditTextNumber extends StatefulWidget {
+  final etcontroller;
+  final ethint;
+  final toptitle;
+
+  EplayerEditTextNumber({this.etcontroller, this.ethint, this.toptitle});
+
+  @override
+  State<EplayerEditTextNumber> createState() => _EplayerEditTextNumberState();
+}
+
+class _EplayerEditTextNumberState extends State<EplayerEditTextNumber> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Column(
+        children: [
+
+          Row(
+            children: [
+              Text("${widget.toptitle}",style: GoogleFonts.mulish(
+                color: app_purple_deep,
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+              ),),
+            ],
+          ),
+          Container(
+              decoration: BoxDecoration(
+                  color: etbg,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(6), topLeft: Radius.circular(6))),
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: TextField(
+                  controller: widget.etcontroller,
+                  decoration: InputDecoration(
+                    hintText: widget.ethint,
+                  ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+
                 ),
               )),
         ],
