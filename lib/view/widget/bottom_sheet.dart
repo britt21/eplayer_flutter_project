@@ -9,12 +9,17 @@ import '../../colors/color.dart';
 import '../../drawables/pngs.dart';
 import '../../font/font.dart';
 import '../../font/fonts.dart';
+import '../../sound/sound.dart';
 import '../../widgets/app_button.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-
-
+final AudioPlayer audioPlayer = AudioPlayer();
 
 Future gamebotomsheet(BuildContext context, bool dissmiss,name,amount,VoidCallback isaccepted){
+
+  playAudio();
+
+
   return showModalBottomSheet(
       isDismissible: false,
       backgroundColor: etbg,
@@ -95,4 +100,15 @@ Future gamebotomsheet(BuildContext context, bool dissmiss,name,amount,VoidCallba
   }
 
       ,shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(30))));
+}
+
+
+void stopAudio() {
+  audioPlayer.stop();
+}
+
+Future<void> playAudio() async {
+
+  final player = AudioPlayer();
+  await player.play(UrlSource("assets/neu.mp3"),volume: 100);
 }

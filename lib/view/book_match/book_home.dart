@@ -64,9 +64,11 @@ class _BookHomeState extends State<BookHome> {
                 if (validateAmount(amountController)) {
                   int? amount = int.tryParse(amountController.text);
 
+                  gamebotomsheet(context, false, "Rev~father", 3000, () { });
+
                   // Get.to(() => FindMatch(amount: amount ?? 0));
 
-                  gamebotomsheet(context,false,"Rev~father",2000,(){});
+                  // gameBottomSheet(context,false,"Rev~father",2000,(){});
                   // Do the rest of your logic here
                 }
 

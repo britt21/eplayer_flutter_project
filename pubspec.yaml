@@ -45,6 +45,7 @@ dependencies:
   dropdown_button2:
   dash_bubble: ^2.0.0
   firebase_auth:
+  audioplayers: ^5.2.0
 
 
 
@@ -72,10 +73,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/image/svg/
-   - assets/image/png/
-#   - assets/fonts/mulish/
-#   - assets/fonts/mulish/static/
+    - assets/
+    - assets/image/svg/
+    - assets/image/png/
+    - assets/sound/
+  #   - assets/fonts/mulish/
+  #   - assets/fonts/mulish/static/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -88,10 +91,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-#  fonts:
-#    - family: Schyler
-#      fonts:
-#        - asset: assets/fonts/mulish/static/
+  #  fonts:
+  #    - family: Schyler
+  #      fonts:
+  #        - asset: assets/fonts/mulish/static/
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
