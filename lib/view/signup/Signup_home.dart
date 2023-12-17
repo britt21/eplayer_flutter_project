@@ -1,9 +1,15 @@
+import 'package:eplayer_flutter_mobile/view/auth/service/auth_service.dart';
+import 'package:eplayer_flutter_mobile/view/home/home.dart';
 import 'package:eplayer_flutter_mobile/widgets/Utils.dart';
 import 'package:eplayer_flutter_mobile/widgets/app_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../colors/color.dart';
+import '../widget/error_dialog.dart';
 
 class SignUpHome extends StatefulWidget {
   const SignUpHome({super.key});
@@ -17,6 +23,9 @@ class _SignUpHomeState extends State<SignUpHome> {
   final passcontroller  = TextEditingController() ;
   final userNameController  = TextEditingController() ;
   final emailcontroller  = TextEditingController() ;
+
+  AuthService authService  = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +79,7 @@ class _SignUpHomeState extends State<SignUpHome> {
                 "Signup",
                   () {
 
-
+                    signup();
               }),
 
 
@@ -84,4 +93,24 @@ class _SignUpHomeState extends State<SignUpHome> {
 
     );
   }
+
+  Future<User?> signup() async{
+
+    var email = emailcontroller.text;
+    var pass = emailcontroller.text;
+    print("UDATA: ${email} : ${pass}");
+    User?  user  = await authService.signupemailPass(email, pass);
+
+    if(user != null){
+      showmessage("SIGNUP SUCCESFUL");
+      Get.to(Home());
+    }else{
+      showmessage("SIGNUP FAILED");
+
+    }
+    return user;
+
+  }
+
+
 }

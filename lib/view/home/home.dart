@@ -56,192 +56,194 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: EplayerHomeAppBar("welcome"),
-        body: Column(
-          children: [
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Hi, Bob",
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Hi, Bob",
+                            style: GoogleFonts.quicksand(
+                                color: app_purple_deep,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                          Text(
+                            "Active",
+                            style: GoogleFonts.quicksand(
+                                color: Colors.green.shade500,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("Fund wallet",
                           style: GoogleFonts.quicksand(
                               color: app_purple_deep,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
-                        ),
-                        Text(
-                          "Active",
-                          style: GoogleFonts.quicksand(
-                              color: Colors.green.shade500,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
+                              fontWeight: FontWeight.bold)),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      SvgPicture.asset(addfundic),
+                      SizedBox(
+                        width: 15,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 15.0, left: 22, right: 22),
+                  child: Container(
+                    height: 140,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: app_purple_deep.withOpacity(0.3),
+                          // Adjust the opacity and color as needed
+                          blurRadius: 3,
+                          // Adjust the blur radius as needed
+                          spreadRadius: 0,
+                          // Adjust the spread radius as needed
+                          offset:
+                              Offset(0, 6), // Offset to create the shadow below
                         ),
                       ],
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text("Fund wallet",
-                        style: GoogleFonts.quicksand(
-                            color: app_purple_deep,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    SvgPicture.asset(addfundic),
-                    SizedBox(
-                      width: 15,
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Padding(
-                padding: const EdgeInsets.only(top: 15.0, left: 22, right: 22),
-                child: Container(
-                  height: 140,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: app_purple_deep.withOpacity(0.3),
-                        // Adjust the opacity and color as needed
-                        blurRadius: 3,
-                        // Adjust the blur radius as needed
-                        spreadRadius: 0,
-                        // Adjust the spread radius as needed
-                        offset:
-                            Offset(0, 6), // Offset to create the shadow below
-                      ),
-                    ],
-                  ),
-                  child: Stack(
-                    children: [
-                      Center(
-                        child: Container(
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Container(
 
-                          decoration: BoxDecoration(
-                            color: app_purple_deep,
-                            borderRadius: BorderRadius.circular(35),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "My Account Earnings",
-                                style: GoogleFonts.mulish(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "\$1,000,000",
+                            decoration: BoxDecoration(
+                              color: app_purple_deep,
+                              borderRadius: BorderRadius.circular(35),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "My Account Earnings",
                                   style: GoogleFonts.mulish(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 19,
+                                    fontSize: 18,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "\$1,000,000",
+                                    style: GoogleFonts.mulish(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 19,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 23.0, top: 1),
-                        child: Container(
-                          child: SvgPicture.asset(cardbgtop),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 23.0, top: 1),
+                          child: Container(
+                            child: SvgPicture.asset(cardbgtop),
+                          ),
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: SvgPicture.asset(cardbgbottom),
-                      ),
-                    ],
-                  ),
-                )),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [SvgPicture.asset(payout), Text("Topup")],
-                ),
-                Column(
-                  children: [SvgPicture.asset(etgift), Text("Gift")],
-                ),
-                Column(
-                  children: [SvgPicture.asset(payout), Text("Payout")],
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: SvgPicture.asset(cardbgbottom),
+                        ),
+                      ],
+                    ),
+                  )),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Wins and Losses",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                  Column(
+                    children: [SvgPicture.asset(payout), Text("Topup")],
                   ),
-                  Text("View All",
-                      style: TextStyle(
-                          color: app_purple, fontWeight: FontWeight.bold))
+                  Column(
+                    children: [SvgPicture.asset(etgift), Text("Gift")],
+                  ),
+                  Column(
+                    children: [SvgPicture.asset(payout), Text("Payout")],
+                  ),
                 ],
               ),
-            ),
-            Container(
-              height: 200,
-              child: ListView.builder(
-                  itemCount: 40,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                          left: 18.0, right: 22, bottom: 22),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "Rev~Father",
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Wins and Losses",
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    Text("View All",
+                        style: TextStyle(
+                            color: app_purple, fontWeight: FontWeight.bold))
+                  ],
+                ),
+              ),
+              Container(
+                height: 150,
+                child: ListView.builder(
+                    itemCount: 40,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 18.0, right: 22, bottom: 22),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  "Rev~Father",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            Text("\$300",
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                          Text("\$300",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold))
-                        ],
-                      ),
-                    );
-                  }),
-            ),
-          ],
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold))
+                          ],
+                        ),
+                      );
+                    }),
+              ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
