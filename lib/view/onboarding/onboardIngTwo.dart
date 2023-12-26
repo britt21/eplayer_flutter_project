@@ -71,6 +71,7 @@ class OnboardingPageOne extends StatelessWidget {
 class OnboardingPageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Padding(

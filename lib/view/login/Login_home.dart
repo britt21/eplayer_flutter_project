@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:eplayer_flutter_mobile/helper/base_client.dart';
+import 'package:eplayer_flutter_mobile/helper/base_contoller.dart';
 import 'package:eplayer_flutter_mobile/view/home/dashboard.dart';
 import 'package:eplayer_flutter_mobile/view/widget/error_dialog.dart';
 import 'package:eplayer_flutter_mobile/widgets/Utils.dart';
@@ -12,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../colors/color.dart';
 import '../auth/service/auth_service.dart';
 import '../home/home.dart';
+import 'package:http/http.dart' as http;
 
 class LoginHome extends StatefulWidget {
   const LoginHome({super.key});
@@ -37,6 +41,7 @@ class _LoginHomeState extends State<LoginHome> {
       appBar: EplayerAppBar("Login"),
       body: ListView(
         children: [
+          
           Padding(
             padding: const EdgeInsets.only(top: 25.0, left: 15, right: 15),
             child: Column(
@@ -57,9 +62,15 @@ class _LoginHomeState extends State<LoginHome> {
                         color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
-                AppEditText(
-                  etcontroller: emailcontroller,
-                  ethint: "danbob@gmail.com",
+                Row(
+                  children: [
+                    Expanded(
+                      child: AppEditText(
+                        etcontroller: emailcontroller,
+                        ethint: "youremail@gmail.com",
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -84,27 +95,48 @@ class _LoginHomeState extends State<LoginHome> {
             height: 20,
           ),
           AppButton("Login", () async {
-          var result =  await  baseClient.get("/odos");
-          print("GOTTHIS: ${result}");
-
+            login();
+            // print("GOTTHIS: ${result}");
           }),
         ],
       ),
     );
   }
 
-  Future<User?> login() async {
-    var email = emailcontroller.text;
-    var pass = emailcontroller.text;
-    print("UDATA: ${email} : ${pass}");
-    User? user = await authService.signinEmailPass(email, pass);
+  Future<void> login() async {
 
-    if (user != null) {
-      showmessage("LOGIN SUCCESFUL");
-      Get.to(() => Home());
-    } else {
-      showmessage("LOGIN FAILED");
+
+    var email = emailcontroller.text;
+    var pass = passcontroller.text;
+    
+    print("UDATA: ${email} : ${pass}");
+
+    var response = await authService.loginUser(email, pass);
+
+    print("ONDEEMAIL: ${response.body?.email}");
+    print("ONDEEMAIL: ${response.body?.id}");
+    print("ONDEEMAIL: ${response.body?.nickName}");
+
+    if(response.responseCode == 200) {
+      Get.offAll(() => Home() );
+
+    }else{
+      showmessage(response.message);
+
     }
-    return user;
+
+
+    // User? user = await authService.signinEmailPass(email, pass);
+    // if (user != null) {
+    //   showmessage("LOGIN SUCCESFUL");
+    //   Get.to(() => Home());
+    // } else {
+    //   showmessage("LOGIN FAILED");
+    // }
+    // return user;
   }
+  
+
+  
+  
 }

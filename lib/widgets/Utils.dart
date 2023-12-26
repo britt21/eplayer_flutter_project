@@ -20,7 +20,7 @@ class EplayerHomeAppnoback extends StatelessWidget implements PreferredSizeWidge
 
 
     return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: etbglit,
     elevation: 1,centerTitle: true,
     leading: Padding(
       padding: const EdgeInsets.only(left: 8.0),
@@ -98,10 +98,10 @@ class EplayerAppBar extends StatelessWidget implements PreferredSizeWidget{
         Get.back();
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0),
+        padding: const EdgeInsets.only(left: 20.0),
         child: Container(
-          width: 24,
-          height: 24,
+          width: 10,
+          height: 10,
           child: SvgPicture.asset(etback),
         ),
       ),

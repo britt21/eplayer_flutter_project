@@ -11,6 +11,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../book_match/book_home.dart';
 import '../widget/bottom_sheet.dart';
 
+
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -55,7 +57,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: EplayerHomeAppBar("welcome"),
+      backgroundColor: etbglit,
+        appBar: EplayerHomeAppnoback("welcome"),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -71,21 +74,22 @@ class _HomeState extends State<Home> {
                         width: 20,
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Hi, Bob",
-                            style: GoogleFonts.quicksand(
+                            "Hi, Xmas~bunny",
+                            style: GoogleFonts.ptSans(
+
                                 color: app_purple_deep,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20),
+                                fontSize: 16),
                           ),
                           Text(
-                            "Active",
+                            "Wallet",
                             style: GoogleFonts.quicksand(
-                                color: Colors.green.shade500,
+                                color: Colors.grey.shade500,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18),
+                                fontSize: 14),
                           ),
                         ],
                       ),
@@ -95,14 +99,17 @@ class _HomeState extends State<Home> {
                     children: [
                       Text("Fund wallet",
                           style: GoogleFonts.quicksand(
-                              color: app_purple_deep,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold)),
                       SizedBox(
-                        width: 10,
+                        width: 5,
                       ),
-                      SvgPicture.asset(addfundic),
+                      Container(
+                        height: 25,
+                          width: 20,
+                          child: SvgPicture.asset(addfundic)),
                       SizedBox(
-                        width: 15,
+                        width: 20,
                       )
                     ],
                   ),
@@ -111,7 +118,7 @@ class _HomeState extends State<Home> {
               Padding(
                   padding: const EdgeInsets.only(top: 15.0, left: 22, right: 22),
                   child: Container(
-                    height: 140,
+                    height: 160,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: BorderRadius.circular(30),
@@ -141,17 +148,17 @@ class _HomeState extends State<Home> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "My Account Earnings",
+                                  "My Wallet",
                                   style: GoogleFonts.mulish(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 18,
+                                    fontSize: 14,
                                   ),
                                 ),
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "\$1,000,000",
+                                    "N100,000",
                                     style: GoogleFonts.mulish(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -196,52 +203,52 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Wins and Losses",
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
-                    Text("View All",
-                        style: TextStyle(
-                            color: app_purple, fontWeight: FontWeight.bold))
-                  ],
-                ),
-              ),
-              Container(
-                height: 150,
-                child: ListView.builder(
-                    itemCount: 40,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                            left: 18.0, right: 22, bottom: 22),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Rev~Father",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            Text("\$300",
-                                style: TextStyle(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                      );
-                    }),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(20.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text(
+              //         "Wins and Losses",
+              //         style: TextStyle(
+              //             color: Colors.black, fontWeight: FontWeight.bold),
+              //       ),
+              //       Text("View All",
+              //           style: TextStyle(
+              //               color: app_purple, fontWeight: FontWeight.bold))
+              //     ],
+              //   ),
+              // ),
+              // Container(
+              //   height: 150,
+              //   child: ListView.builder(
+              //       itemCount: 40,
+              //       itemBuilder: (context, index) {
+              //         return Padding(
+              //           padding: const EdgeInsets.only(
+              //               left: 18.0, right: 22, bottom: 22),
+              //           child: Row(
+              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //             children: [
+              //               Column(
+              //                 children: [
+              //                   Text(
+              //                     "Rev~Father",
+              //                     style: TextStyle(
+              //                         color: Colors.black,
+              //                         fontWeight: FontWeight.w500),
+              //                   ),
+              //                 ],
+              //               ),
+              //               Text("\$300",
+              //                   style: TextStyle(
+              //                       color: Colors.green,
+              //                       fontWeight: FontWeight.bold))
+              //             ],
+              //           ),
+              //         );
+              //       }),
+              // ),
             ],
           ),
         ),
@@ -258,6 +265,7 @@ class _HomeState extends State<Home> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: etbglit,
           currentIndex: _selectedIndex,
           onTap: (int index) {
             setState(() {

@@ -7,6 +7,7 @@
 
     <application
         android:label="eplayer_flutter_mobile"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

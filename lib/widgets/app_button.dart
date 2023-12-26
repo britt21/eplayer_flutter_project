@@ -265,13 +265,12 @@ class _AppEditTextState extends State<AppEditText> {
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(6), topLeft: Radius.circular(6))),
           height: 50,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: TextField(
-              controller: widget.etcontroller,
-              decoration: InputDecoration(
-                hintText: widget.ethint,
-              ),
+          child: TextField(
+            controller: widget.etcontroller,
+            style: TextStyle(fontWeight: FontWeight.bold),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.only(left: 10.0),
+              hintText: widget.ethint,
             ),
           )),
     );
@@ -312,13 +311,11 @@ class _EplayerEditTextState extends State<EplayerEditText> {
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(6), topLeft: Radius.circular(6))),
               height: 50,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: TextField(
-                  controller: widget.etcontroller,
-                  decoration: InputDecoration(
-                    hintText: widget.ethint,
-                  ),
+              child: TextField(
+                controller: widget.etcontroller,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10.0), // Adjust the padding here
+                  hintText: widget.ethint,
                 ),
               )),
         ],
@@ -361,17 +358,16 @@ class _EplayerEditTextNumberState extends State<EplayerEditTextNumber> {
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(6), topLeft: Radius.circular(6))),
               height: 50,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: TextField(
-                  controller: widget.etcontroller,
-                  decoration: InputDecoration(
-                    hintText: widget.ethint,
-                  ),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              child: TextField(
+                controller: widget.etcontroller,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10.0), // Adjust the padding here
 
+                  hintText: widget.ethint,
                 ),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+
               )),
         ],
       ),
@@ -397,25 +393,33 @@ class EtPass extends StatelessWidget {
           ),
         ),
         height: 50,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: TextField(
-            style: GoogleFonts.mulish(
-                color: Colors.black, fontWeight: FontWeight.bold),
-            controller: etcontroller,
-            obscureText: true, // This makes it a password input field
-            decoration: InputDecoration(
-              suffixStyle: GoogleFonts.mulish(
-                  color: Colors.black, fontWeight: FontWeight.bold),
-              hintText: "Password",
+        child: TextField(
+          style: GoogleFonts.mulish(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+
+          ),
+          controller: etcontroller,
+          obscureText: true, // This makes it a password input field
+          maxLength: 4, // Set the maximum length to 4
+          keyboardType: TextInputType.number, // Use the number keyboard
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly, // Allow only numeric input
+          ],
+          decoration: InputDecoration(
+            suffixStyle: GoogleFonts.mulish(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
+            contentPadding: EdgeInsets.only(left: 10.0), // Adjust the padding here
+            hintText: "Password",
+            counterText: "", // Remove the default character count
           ),
         ),
       ),
     );
   }
 }
-
 class AppTextView extends StatelessWidget {
   final edittexthint;
 
@@ -434,17 +438,16 @@ class AppTextView extends StatelessWidget {
           ),
         ),
         height: 50,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: TextField(
-            style: GoogleFonts.mulish(
+        child: TextField(
+          style: GoogleFonts.mulish(
+              color: Colors.black, fontWeight: FontWeight.bold),
+          obscureText: true, // This makes it a password input field
+          decoration: InputDecoration(
+            suffixStyle: GoogleFonts.mulish(
                 color: Colors.black, fontWeight: FontWeight.bold),
-            obscureText: true, // This makes it a password input field
-            decoration: InputDecoration(
-              suffixStyle: GoogleFonts.mulish(
-                  color: Colors.black, fontWeight: FontWeight.bold),
-              hintText: "${edittexthint}",
-            ),
+            hintText: "${edittexthint}",
+            contentPadding: EdgeInsets.only(left: 10.0), // Adjust the padding here
+
           ),
         ),
       ),
