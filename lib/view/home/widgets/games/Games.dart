@@ -46,7 +46,7 @@ class HomeGames extends StatelessWidget {
                          child: Container(
                            width: 170,
                              child: GameButton(Colors.white,Colors.white,"Proceed",Colors.black,(){
-                               Get.to(BookMatch());
+                               Get.to(() =>BookMatch());
                              }))),
                    ),
 

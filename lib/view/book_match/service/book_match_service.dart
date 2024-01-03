@@ -1,8 +1,16 @@
 import 'dart:convert';
+import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/accept_game/AcceptGameResponse.dart';
+import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/create_match/BookMatchResponse.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../helper/base_client.dart';
+import '../../../helper/base_contoller.dart';
+import '../../login/model/response/LoginResponse.dart';
 import 'model/request/book_match_request.dart';
 import 'model/response/book_match_response.dart';
+
 
 class NotificationService {
   static const String apiUrl = 'https://fcm.googleapis.com/fcm/send';
@@ -20,4 +28,73 @@ class NotificationService {
       throw Exception('Failed to send notification');
     }
   }
+}
+
+
+class BookService extends GetxController with BaseController {
+  BaseClient baseClient = BaseClient();
+  final introdata = GetStorage();
+  var isLoading = false.obs;
+
+
+
+  Future<BookMatchResponse> bookMatch(String userId, int amount,  String gameName, ) async {
+    isLoading(true);
+    var loginPayload =
+    {
+    };
+
+
+    var response = await baseClient.post("createMatch?userId=$userId&amount=$amount&gameName=$gameName&isActive=true", loginPayload).catchError((error){
+      handleError;
+    });
+    var data = json.decode(response);
+
+
+    var respigot = BookMatchResponse.fromJson(data);
+
+
+
+
+    print("IGOTRESPONSEHERE: ${respigot.body?.nickname}");
+    print("IGOTRESPONSEHERECODE: ${respigot.responseCode}");
+    print("IGOTRESPONSEHEREMSG: ${respigot.message}");
+    print("IGOTRESPONSEHEREMSG: ${respigot.body?.gameid}");
+    return  respigot;
+
+
+
+  }
+
+
+  Future<AcceptGameResponse> acceptMatch(String gameId, String takenById, String takenByName, ) async {
+    isLoading(true);
+
+
+    var response = await baseClient.patch("updateGameById/{gameId}?gameId=$gameId&takenById=$takenById&takenByName=$takenByName").catchError((error){
+      handleError;
+
+
+    });
+    var data = json.decode(response);
+
+    var respigot = AcceptGameResponse.fromJson(data);
+
+
+
+
+    print("IGOTRESPONSEHERECODE: ${respigot.responseCode}");
+    print("IGOTRESPONSEHEREMSG: ${respigot.message}");
+    print("IGOTRESPONSEHEREMSG: ${respigot.body?.bookedFromUserId}");
+    print("IGOTRESPONSEHEREMSG: ${respigot.body?.takenByUserId}");
+    return  respigot;
+
+
+
+  }
+
+
+
+
+
 }

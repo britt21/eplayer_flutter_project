@@ -26,16 +26,20 @@ class BaseClient {
   }
   Future<dynamic> patch(String api) async {
     try {
+      var headers = {
+        'Content-Type': 'application/json', // Set the content type to JSON
+      };
       var response = await http
-          .patch(Uri.parse("${baseUrl}/${api}"))
+          .patch(Uri.parse("${baseUrl}/${api}"),headers: headers)
+
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
 
       print(response.body);
       return proccessResponse(response);
     } on SocketException {
-      throw FetchDataException("No internet connection", api.toString());
+      return FetchDataException("No internet connection", api.toString());
     } on TimeoutException {
-      throw ApiNotRespondingException(
+      return ApiNotRespondingException(
           "Api Taking too long to response", api.toString());
     }
   }
@@ -50,7 +54,8 @@ class BaseClient {
           .post(Uri.parse("$baseUrl/$api"), headers : headers, body: payload)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
 
-      
+
+      print("FULLDATA: ${response.body}");
 
       return proccessResponse(response);
     } on SocketException {
@@ -62,27 +67,32 @@ class BaseClient {
   }
 
   dynamic proccessResponse(http.Response response) {
+
+    print("IGOTSTATCODE: ${response.statusCode}");
     switch (response.statusCode) {
       case 200:
         var responseJson = utf8.decode(response.bodyBytes);
         return responseJson;
 
       case 400:
-        throw BadRequestException(
-            utf8.decode(response.bodyBytes), response.request?.url.toString());
+
+        var responseJson = utf8.decode(response.bodyBytes);
+        return responseJson;
+
          case 415:
 
-        throw BadRequestException(
-            utf8.decode(response.bodyBytes), response.request?.url.toString());
+           var responseJson = utf8.decode(response.bodyBytes);
+           return responseJson;
 
 
       case 401:
       case 404:
-        throw UnAuthorizedException(
-            utf8.decode(response.bodyBytes), response.request?.url.toString());
+      var responseJson = utf8.decode(response.bodyBytes);
+      return responseJson;
+
 
       case 500:
-        throw FetchDataException("An Error occured: ${response.statusCode}",
+        return FetchDataException("An Error occured: ${response.statusCode}",
             response.request?.url.toString());
 
       case 503:

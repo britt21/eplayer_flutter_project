@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../login/Login_home.dart';
+import '../widget/bottom_sheet.dart';
 
 Future<void> handleMessage(RemoteMessage message) async {
   print("Title: ${message.notification?.title}");
@@ -11,8 +12,6 @@ Future<void> handleMessage(RemoteMessage message) async {
   print("Payload: ${message.data}");
 
   if(message.data.isNotEmpty){
-
-
 
   }
 }
@@ -29,8 +28,9 @@ class FirebaseApi {
     final fcmtoken = await _firebaseMessaging.getToken();
     print("Token: ${fcmtoken}");
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      handleMessage(message);
-    });
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    //   handleMessage(message);
+    //
+    // });
   }
 }

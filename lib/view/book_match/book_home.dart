@@ -1,11 +1,15 @@
 
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'package:eplayer_flutter_mobile/view/book_match/service/book_match_service.dart';
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/request/book_match_request.dart';
+import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/create_match/BookMatchResponse.dart';
 import 'package:eplayer_flutter_mobile/view/widget/error_dialog.dart';
 import 'package:eplayer_flutter_mobile/widgets/Utils.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../colors/color.dart';
@@ -29,6 +33,8 @@ class _BookHomeState extends State<BookHome> {
 
    TextEditingController amountController = TextEditingController();
 
+   var bookService = BookService();
+
 
   @override
   void initState() {
@@ -48,42 +54,64 @@ class _BookHomeState extends State<BookHome> {
   Widget build(BuildContext context) {
 
 
-    return Scaffold(
-        appBar: EplayerAppBar("Book Match"),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 25.0,left: 15,right: 15),
-          child: Column(
+    return Obx(
+        ()=> BlurryModalProgressHUD(
+          inAsyncCall: bookService.isLoading.value,
+      child: Scaffold(
+          appBar: EplayerAppBar("Book Match"),
+          body: Padding(
+            padding: const EdgeInsets.only(top: 25.0,left: 15,right: 15),
+            child: Column(
 
-            children: [
-              EplayerEditTextNumber(toptitle: "Bidding Amount",ethint: "Enter amount",etcontroller: amountController,),
-              SizedBox(height: 15,),
-              AppButton("Find Match", () {
-
-
-
-                if (validateAmount(amountController)) {
-                  int? amount = int.tryParse(amountController.text);
-
-                  gamebotomsheet(context, false, "Rev~father", 3000, () { });
-
-                  // Get.to(() => FindMatch(amount: amount ?? 0));
-
-                  // gameBottomSheet(context,false,"Rev~father",2000,(){});
-                  // Do the rest of your logic here
-                }
+              children: [
+                EplayerEditTextNumber(toptitle: "Bidding Amount",ethint: "Enter amount",etcontroller: amountController,),
+                SizedBox(height: 15,),
+                AppButton("Find Match", () async {
 
 
 
+                  if (validateAmount(amountController)) {
+                    int? amount = int.tryParse(amountController.text);
+                    bookMatch(amount);
 
-              })
+                    // Get.to(() => FindMatch(amount: amount ?? 0));
 
-            ],
+                    // gameBottomSheet(context,false,"Rev~father",2000,(){});
+                    // Do the rest of your logic here
+                  }
+
+
+
+
+                })
+
+              ],
+            ),
           ),
-        ),
 
+      ),
+    )
     );
   }
 
+  Future<void> bookMatch(amount) async {
+
+    var userinfo = GetStorage();
+    var userId = userinfo.read("userid");
+    var response =   await bookService.bookMatch(userId, amount, "Call of Duty Mobile");
+
+    if(response.responseCode ==  200){
+    var userName = GetStorage().read('nickName');
+
+      Get.to(() => FindMatch(gameid: response.body!.gameid!,amount: amount!,userID: userId,userName: userName,gameName: "Call of Duty Mobile",));
+      bookService.isLoading(false);
+
+    }else{
+      print("DMESSAGEIGOT: ${response.message}");
+      bookService.isLoading(false);
+      showmessage(response.message);
+    }
+  }
 }
 
 

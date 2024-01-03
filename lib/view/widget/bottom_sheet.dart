@@ -1,7 +1,9 @@
 import 'dart:typed_data';
 
+import 'package:eplayer_flutter_mobile/view/book_match/service/book_match_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../colors/color.dart';
 import 'package:get/get.dart';
@@ -16,10 +18,17 @@ import '../../sound/sound.dart';
 import '../../widgets/app_button.dart';
 import 'package:audioplayers/audioplayers.dart';
 
+import '../book_match/find_match.dart';
+import 'error_dialog.dart';
+
 final AudioPlayer audioPlayer = AudioPlayer();
+
+var bookService = BookService();
 
 Future gamebotomsheet(BuildContext context, bool dissmiss, name, amount,
     VoidCallback isaccepted) {
+
+
   playAudio();
 
   return showModalBottomSheet(
@@ -104,11 +113,13 @@ Future gamebotomsheet(BuildContext context, bool dissmiss, name, amount,
                   child: Row(
                     children: [
                       Expanded(
+
                           child: AppButtonDeep("Dismiss", () {
+                            Navigator.pop(context);
                         stopAudio();
                       })),
                       // Navigator.pop(context);})),
-                      Expanded(child: AppButton("More details", isaccepted)),
+                      Expanded(child: AppButton("Accept", isaccepted)),
                     ],
                   ),
                 ),
@@ -117,11 +128,16 @@ Future gamebotomsheet(BuildContext context, bool dissmiss, name, amount,
       },
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(30))));
+
+
 }
 
 void stopAudio() {
   audioPlayer.stop();
 }
+
+
+
 
 Future<void> playAudio() async {
 

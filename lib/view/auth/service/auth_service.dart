@@ -6,11 +6,14 @@ import 'package:eplayer_flutter_mobile/view/auth/model/register/response/Registe
 import 'package:eplayer_flutter_mobile/view/login/model/response/LoginResponse.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_storage/get_storage.dart';
 
 
 class AuthService with BaseController {
   FirebaseAuth auth = FirebaseAuth.instance;
   BaseClient baseClient = BaseClient();
+  final introdata = GetStorage();
+
 
 
   Future<User?> signupemailPass(String email, String pass) async {
@@ -52,6 +55,13 @@ class AuthService with BaseController {
 
 
       var respigot = LoginResponse.fromJson(data);
+
+      introdata.write('email', respigot.body?.email);
+      introdata.write('userid', respigot.body?.id);
+      introdata.write('nickName', respigot.body?.nickName);
+      introdata.write('balance', respigot.body?.wallet?.balance);
+      introdata.write('bobis', "bob");
+
 
       print("IGOTRESPONSEHERE: ${respigot.body?.nickName}");
       print("IGOTRESPONSEHERE: ${respigot.body?.email}");

@@ -1,40 +1,38 @@
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/request/book_match_request.dart';
 import 'package:eplayer_flutter_mobile/view/widget/bottom_sheet.dart';
+import 'package:eplayer_flutter_mobile/view/widget/error_dialog.dart';
 import 'package:eplayer_flutter_mobile/widgets/Utils.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../font/fonts.dart';
 import '../../drawables/pngs.dart';
 import 'controller/book_match_controller.dart';
 
 class FindMatch extends StatefulWidget {
-
+  final String gameid;
   final int amount;
+  final String userID;
+  final String userName;
+  final String gameName;
 
-  FindMatch({required this.amount});
-
+  FindMatch({required this.amount, required this.userID, required this.userName, required this.gameName, required this.gameid,});
 
   @override
   State<FindMatch> createState() => _FindMatchState();
 }
 
-class _FindMatchState extends State<FindMatch>
-    with SingleTickerProviderStateMixin {
+class _FindMatchState extends State<FindMatch> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   var notificationController = NotificationController();
-
   bool _isExpanded = false; // To track the state of the animation
-
   late Map payload;
+
   @override
   void initState() {
-
     super.initState();
-
-
-
-    getResponse(widget.amount);
+    getResponse(widget.amount,widget.userID,widget.userName,"Call of Duty Mobile",widget.gameid);
 
     _controller = AnimationController(
       vsync: this,
@@ -43,7 +41,6 @@ class _FindMatchState extends State<FindMatch>
 
     _controller.addListener(() {
       setState(() {
-
         _isExpanded = _controller.status == AnimationStatus.forward;
       });
     });
@@ -61,10 +58,9 @@ class _FindMatchState extends State<FindMatch>
     return Scaffold(
       appBar: EplayerHomeAppnoback(""),
       body: Column(
-
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Finding you a match",style: bigfontbig),
+          Text("Finding you a match", style: bigfontbig),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(40.0),
@@ -88,7 +84,10 @@ class _FindMatchState extends State<FindMatch>
       ),
     );
   }
-  Future<void> getResponse(int matchAmount) async {
+
+  Future<void> getResponse(int matchAmount,String userId,String userName,String gameName,String gameId,) async {
+    print("SENDINGNOFIFY");
+
     final request = NotificationRequest(
       to: '/topics/foo-bar',
       notification: {
@@ -97,14 +96,13 @@ class _FindMatchState extends State<FindMatch>
       },
       data: {
         'amount': '${matchAmount}',
-        'fromid': '1234',
-        'name': 'xmas_bunny',
-        'rank': '5 star',
+        'fromid': '${userId}',
+        'name': '${userName}',
+        'gameName': '${gameName}',
+        'gameId': '${gameId}',
       },
     );
-    // Get.to(() => FindMatch());
 
-    notificationController.sendNotification(request);
 
     final response = await notificationController.sendNotification(request);
 
@@ -113,11 +111,13 @@ class _FindMatchState extends State<FindMatch>
       print('Notification sent successfully. Message ID: ${response.messageId}');
     } else {
       // Handle the error
+      Navigator.pop(context);
+      showmessage("Failed to send notification, your network might be too slow");
       print('Failed to send notification.');
     }
   }
-
 }
+
 
 
 
