@@ -17,8 +17,6 @@ Future<void> handleMessage(RemoteMessage message) async {
 }
 
 
-// ev8tdxu0QciOOy6tM5ZNaY:APA91bEPuiiaxoqNFwBiD-Bqzkmu4HQYhh9C9ySDhJlyN-O-qp3Up4Gf3OE9u-UYnIrhmrS8TEu1cNzdlsDQ8Qh5Qsr7bRPeaXVBoeVlh8keNNmVDmtHBgDeae7_i6o5TeOYxUsCERr1
-
 class FirebaseApi {
   final _firebaseMessaging = FirebaseMessaging.instance;
 
