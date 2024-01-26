@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:eplayer_flutter_mobile/helper/base_client.dart';
 import 'package:eplayer_flutter_mobile/helper/base_contoller.dart';
 import 'package:eplayer_flutter_mobile/view/home/dashboard.dart';
@@ -37,69 +38,73 @@ class _LoginHomeState extends State<LoginHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: EplayerAppBar("Login"),
-      body: ListView(
-        children: [
-          
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0, left: 15, right: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Login to your\nEplayer account",
-                  style: GoogleFonts.mulish(
-                      fontSize: 22,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25.0),
-                  child: Text(
-                    "Email Address",
+    return Obx(
+      () => BlurryModalProgressHUD(inAsyncCall: authService.isLoading.value,
+      child: Scaffold(
+        appBar: EplayerAppBar("Login"),
+        body: ListView(
+          children: [
+
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0, left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Login to your\nEplayer account",
+                    style: GoogleFonts.mulish(
+                        fontSize: 22,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25.0),
+                    child: Text(
+                      "Email Address",
+                      style: GoogleFonts.mulish(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: AppEditText(
+                          etcontroller: emailcontroller,
+                          ethint: "youremail@gmail.com",
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Password",
                     style: GoogleFonts.mulish(
                         color: Colors.black, fontWeight: FontWeight.bold),
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: AppEditText(
-                        etcontroller: emailcontroller,
-                        ethint: "youremail@gmail.com",
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                  EtPass(
+                    etcontroller: passcontroller,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Password",
-                  style: GoogleFonts.mulish(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                EtPass(
-                  etcontroller: passcontroller,
-                ),
-              ],
+            SizedBox(
+              height: 20,
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          AppButton("Login", () async {
-            login();
-            // print("GOTTHIS: ${result}");
-          }),
-        ],
+            AppButton("Login", () async {
+              login();
+              // print("GOTTHIS: ${result}");
+            }),
+          ],
+        ),
       ),
+    )
     );
   }
 
@@ -118,9 +123,12 @@ class _LoginHomeState extends State<LoginHome> {
     print("ONDEEMAIL: ${response.body?.nickName}");
 
     if(response.responseCode == 200) {
+     authService.isLoading(false);
+
       Get.offAll(() => Home() );
 
     }else{
+      authService.isLoading(false);
       showmessage(response.message);
 
     }

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:eplayer_flutter_mobile/view/book_match/service/book_match_service.dart';
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/request/book_match_request.dart';
 import 'package:eplayer_flutter_mobile/view/widget/bottom_sheet.dart';
 import 'package:eplayer_flutter_mobile/view/widget/error_dialog.dart';
@@ -26,12 +29,20 @@ class FindMatch extends StatefulWidget {
 class _FindMatchState extends State<FindMatch> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   var notificationController = NotificationController();
+  BookService bookService = BookService();
   bool _isExpanded = false; // To track the state of the animation
   late Map payload;
+  late Timer _timer;
+
 
   @override
   void initState() {
     super.initState();
+    _timer = Timer.periodic(Duration(seconds: 5), (Timer timer) {
+      // Call your API here
+      getBookedGame();
+    });
+
     getResponse(widget.amount,widget.userID,widget.userName,"Call of Duty Mobile",widget.gameid);
 
     _controller = AnimationController(
@@ -46,9 +57,11 @@ class _FindMatchState extends State<FindMatch> with SingleTickerProviderStateMix
     });
   }
 
+
   @override
   void dispose() {
     _controller.dispose();
+    _timer.cancel();
     print("GETTINGDISPOSED");
     super.dispose();
   }
@@ -104,6 +117,7 @@ class _FindMatchState extends State<FindMatch> with SingleTickerProviderStateMix
     );
 
 
+
     final response = await notificationController.sendNotification(request);
 
     if (response != null) {
@@ -114,6 +128,20 @@ class _FindMatchState extends State<FindMatch> with SingleTickerProviderStateMix
       Navigator.pop(context);
       showmessage("Failed to send notification, your network might be too slow");
       print('Failed to send notification.');
+    }
+  }
+
+
+  void getBookedGame() async{
+    print("TRIFFERED");
+    var response = await bookService.getBookedGames(widget.gameid);
+    if(response.responseCode == 200){
+      if(response.body?.takenById != ""){
+        Navigator.pop(context);
+        showmessage("Matched Found");
+      }
+    }else{
+      showmessage("${response.message}");
     }
   }
 }

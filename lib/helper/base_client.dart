@@ -92,8 +92,8 @@ class BaseClient {
 
 
       case 500:
-        return FetchDataException("An Error occured: ${response.statusCode}",
-            response.request?.url.toString());
+        var responseJson = utf8.decode(response.bodyBytes);
+        return responseJson;
 
       case 503:
         throw FetchDataException("An Error occured: ${response.statusCode}",

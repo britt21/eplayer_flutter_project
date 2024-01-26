@@ -6,6 +6,7 @@ import 'package:eplayer_flutter_mobile/view/auth/model/register/response/Registe
 import 'package:eplayer_flutter_mobile/view/login/model/response/LoginResponse.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 
@@ -13,6 +14,8 @@ class AuthService with BaseController {
   FirebaseAuth auth = FirebaseAuth.instance;
   BaseClient baseClient = BaseClient();
   final introdata = GetStorage();
+  var isLoading = false.obs;
+
 
 
 
@@ -29,6 +32,7 @@ class AuthService with BaseController {
   }
 
   Future<User?> signinEmailPass(String email, String pass) async {
+    isLoading(true);
     try {
       UserCredential credential =
       await auth.signInWithEmailAndPassword(email: email, password: pass);
@@ -42,6 +46,7 @@ class AuthService with BaseController {
 
 
   Future<LoginResponse> loginUser(String email, String pass) async {
+    isLoading(true);
 
       var loginPayload =
       {
