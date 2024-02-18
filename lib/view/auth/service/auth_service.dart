@@ -56,7 +56,9 @@ class AuthService with BaseController {
 
 
       var response = await baseClient.post("loginUser", loginPayload).catchError(handleError);
-      var data = json.decode(response);
+    var emptydata = "{'responseCode' : '404' ,'message' : 'Invalid Credentials'}";
+      print("drsps"  + response);
+      var data = json.decode(response ?? emptydata);
 
 
       var respigot = LoginResponse.fromJson(data);
@@ -74,7 +76,7 @@ class AuthService with BaseController {
       print("IGOTRESPONSEHERE: ${respigot.body?.profilePicture}");
       print("IGOTRESPONSEHERECODE: ${respigot.responseCode}");
       print("IGOTRESPONSEHEREMSG: ${respigot.message}");
-      return  respigot;
+      return  respigot.responseCode.isBlank! ? LoginResponse(message: "",body: Body(),responseCode: 404) : respigot;
 
 
 

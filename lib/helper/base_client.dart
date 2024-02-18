@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:eplayer_flutter_mobile/helper/app_exception.dart';
 import 'package:http/http.dart' as http;
 
-const baseUrl = "http://192.168.43.200:6969";
+const baseUrl = "http://192.168.1.176:6969";
 
 class BaseClient {
   static const int TIME_OUT_DURATION = 180;

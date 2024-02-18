@@ -42,6 +42,43 @@ class AppButton extends StatelessWidget {
     );
   }
 }
+class AppButtonWide extends StatelessWidget {
+  final text;
+  final VoidCallback touch;
+
+  AppButtonWide( this.text, this.touch);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 55,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 0, right: 0),
+        child: InkWell(
+          onTap: touch,
+          child: Container(
+            decoration: BoxDecoration(
+              color: app_purple,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(width: 3, color: lit_purple),
+            ),
+            child: Center(
+              child: Text(
+                text,
+                style: GoogleFonts.mulish(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 class AppButtonLit extends StatelessWidget {
   final text;
   final textColor;

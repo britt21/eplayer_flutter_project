@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/accept_game/AcceptGameResponse.dart';
+import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/all_games/AllGamesResponse.dart';
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/booked_match/BookedMatchResponse.dart';
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/create_match/BookMatchResponse.dart';
 import 'package:get/get.dart';
@@ -60,7 +61,27 @@ class BookService extends GetxController with BaseController {
 
 
   }
-  
+  Future<AllGamesResponse> getAllGames() async{
+
+    isLoading(true);
+    var response = await baseClient.get("allgames/").catchError(handleError);
+
+    var data = json.decode(response);
+
+
+    var respigot = AllGamesResponse.fromJson(data);
+
+
+
+
+    print("IGOTRESPONSEHEREMSG: ${respigot.responseCode}");
+    print("IGOTRESPONSEHEREMSG: ${respigot.message}");
+    print("IGOTRESPONSEHEREMSG: ${respigot.body}");
+    return  respigot;
+
+
+  }
+
   Future<BookMatchResponse> bookMatch(String userId, int amount,  String gameName, ) async {
     isLoading(true);
     var loginPayload =

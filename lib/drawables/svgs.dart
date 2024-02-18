@@ -20,4 +20,5 @@ const payout = "assets/image/svg/payoutbg.svg";
 const etgift = "assets/image/svg/dgift.svg";
 const cardbgtop = "assets/image/svg/cardbgone.svg";
 const cardbgbottom = "assets/image/svg/cardbgbottom.svg";
+const downarrow = "assets/image/svg/downarrow.svg";
 

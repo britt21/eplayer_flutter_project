@@ -1,18 +1,21 @@
 class LoginResponse {
+
+  int? responseCode;
+  String? message;
+  Body? body;
+
   LoginResponse({
-      this.responseCode, 
-      this.message, 
-      this.body,});
+      required this.responseCode,
+     required this.message,
+     required this.body,});
 
   LoginResponse.fromJson(dynamic json) {
     responseCode = json['responseCode'];
     message = json['message'];
     body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
-  num? responseCode;
-  String? message;
-  Body? body;
-LoginResponse copyWith({  num? responseCode,
+
+LoginResponse copyWith({  int? responseCode,
   String? message,
   Body? body,
 }) => LoginResponse(  responseCode: responseCode ?? this.responseCode,

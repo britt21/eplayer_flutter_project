@@ -1,5 +1,6 @@
 
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
+import 'package:eplayer_flutter_mobile/view/book_match/select_game_home.dart';
 import 'package:eplayer_flutter_mobile/view/book_match/service/book_match_service.dart';
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/request/book_match_request.dart';
 import 'package:eplayer_flutter_mobile/view/book_match/service/model/response/create_match/BookMatchResponse.dart';
@@ -66,15 +67,15 @@ class _BookHomeState extends State<BookHome> {
               children: [
                 EplayerEditTextNumber(toptitle: "Bidding Amount",ethint: "Enter amount",etcontroller: amountController,),
                 SizedBox(height: 15,),
-                AppButton("Find Match", () async {
+                AppButtonWide("Find Match", () async {
 
 
 
                   if (validateAmount(amountController)) {
-                    int? amount = int.tryParse(amountController.text);
-                    bookMatch(amount);
+                    // int? amount = int.tryParse(amountController.text);
+                    // bookMatch(amount);
 
-                    // Get.to(() => FindMatch(amount: amount ?? 0));
+                    Get.to(() => SelectGameHome());
 
                     // gameBottomSheet(context,false,"Rev~father",2000,(){});
                     // Do the rest of your logic here
